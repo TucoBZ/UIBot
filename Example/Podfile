@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'UIBot_Example' do
+    
+end
+
+target 'UIBot_Tests' do
+    pod 'UIBot', :path => '../'
+    inherit! :search_paths
+end
+

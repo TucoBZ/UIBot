@@ -1,0 +1,6 @@
+framework module UIBot {
+  umbrella header "UIBot-umbrella.h"
+
+  export *
+  module * { export * }
+}

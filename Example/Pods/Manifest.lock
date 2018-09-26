@@ -1,0 +1,21 @@
+PODS:
+  - UIBot (0.1.0):
+    - UIBot/Core (= 0.1.0)
+    - UIBot/XCTest (= 0.1.0)
+  - UIBot/Core (0.1.0)
+  - UIBot/XCTest (0.1.0):
+    - UIBot/Core
+
+DEPENDENCIES:
+  - UIBot (from `../`)
+
+EXTERNAL SOURCES:
+  UIBot:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  UIBot: aa9c2dc4da10372a4b8881fe8d2f799c0c97d6cf
+
+PODFILE CHECKSUM: 6da980bbff06089232d87eb89a43ad3ac98eb1b9
+
+COCOAPODS: 1.5.3
