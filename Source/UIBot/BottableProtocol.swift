@@ -1,8 +1,19 @@
 //
 //  BottableProtocol.swift
-//  Pods-UIBot_Example
+//  UIBot
 //
 //  Created by Túlio Bazan da Silva on 25/09/18.
 //
 
-import Foundation
+import XCTest
+
+protocol Bottable {
+    func application() -> XCUIApplication
+    func caseTest() -> XCTestCase
+}
+
+extension Bottable where  Self: XCTestCase {
+    func caseTest() -> XCTestCase {
+        return self
+    }
+}
