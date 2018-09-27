@@ -1,0 +1,6 @@
+framework module Pods_UIBot_ExampleUITests {
+  umbrella header "Pods-UIBot_ExampleUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

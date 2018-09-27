@@ -1,11 +1,13 @@
+platform :ios, '9.0'
 use_frameworks!
+inhibit_all_warnings!
 
 target 'UIBot_Example' do
-    
-end
+    use_frameworks!
 
-target 'UIBot_Tests' do
-    pod 'UIBot', :path => '../'
-    inherit! :search_paths
-end
+    target 'UIBot_ExampleUITests' do
+        inherit! :search_paths
+        pod 'UIBot', :path => '../'
+    end
 
+end

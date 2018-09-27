@@ -17,24 +17,6 @@
   "platforms": {
     "ios": "9.0"
   },
-  "requires_arc": true,
-  "subspecs": [
-    {
-      "name": "Core",
-      "source_files": "Source/UIBot/*.swift"
-    },
-    {
-      "name": "XCTest",
-      "dependencies": {
-        "UIBot/Core": [
-
-        ]
-      },
-      "source_files": "Source/UIBot/XCTest.swift",
-      "frameworks": "XCTest",
-      "pod_target_xcconfig": {
-        "ENABLE_BITCODE": "NO"
-      }
-    }
-  ]
+  "source_files": "Source/UIBot/*.swift",
+  "frameworks": "XCTest"
 }
