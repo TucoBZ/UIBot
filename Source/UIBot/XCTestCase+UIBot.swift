@@ -1,5 +1,5 @@
 //
-//  XCTestCase+Wait_Operations.swift
+//  XCTestCase+UIBot.swift
 //  UIBot
 //
 //  Created by Túlio Bazan da Silva on 25/09/18.

@@ -1,13 +1,13 @@
 //
 //  SwipeDirection.swift
-//  Pods-UIBot_Example
+//  UIBot
 //
 //  Created by Túlio Bazan da Silva on 26/09/18.
 //
 
 import XCTest
 
-enum SwipeDirection {
+public enum SwipeDirection {
     case up
     case down
     case left

@@ -7,13 +7,12 @@
 
 import XCTest
 
-protocol Bottable {
-    func application() -> XCUIApplication
-    func caseTest() -> XCTestCase
+public protocol Bottable {
+    var app: XCUIApplication {get}
+    var caseTest: XCTestCase {get}
 }
 
 extension Bottable where  Self: XCTestCase {
-    func caseTest() -> XCTestCase {
-        return self
-    }
+    var caseTest: XCTestCase { return self }
+    var app: XCUIApplication { return XCUIApplication() }
 }
