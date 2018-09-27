@@ -6,6 +6,7 @@ Pod::Spec.new do |spec|
   spec.license          = { :type => 'MIT', :file => 'LICENSE' }
   spec.author           = { 'TucoBZ' => 'tucobz@gmail.com' }
   spec.source           = { :git => 'https://github.com/TucoBZ/UIBot.git', :tag => spec.version.to_s }
+  spec.swift_version    = '4.0'
   spec.ios.deployment_target = '9.0'
 
   spec.source_files = 'Source/UIBot/*.swift'
