@@ -157,4 +157,13 @@ open class Bot {
         }
     }
     
+    ///Waits for a Elements to not exists
+    public func waitToNotExist(element: XCUIElement) {
+        XCTContext.runActivity(named: "Wait Until Element: \(element) not Exist") { _ in
+            self.test.waitToNotExist(element: element, by: testTimeout) { (error) in
+                XCTAssertNil(error)
+                sleep(1)
+            }
+        }
+    }
 }

@@ -22,4 +22,17 @@ extension XCTestCase {
             completionHandler(error)
         }
     }
+    
+    func waitToNotExist(element: XCUIElement, by duration: TimeInterval, completionHandler: @escaping (Error?) -> Void ) {
+        
+        let exists = NSPredicate(format: "exists == false")
+        
+        expectation(for: exists, evaluatedWith: element) { () -> Bool in
+            return true
+        }
+        
+        waitForExpectations(timeout: duration) { (error) in
+            completionHandler(error)
+        }
+    }
 }
