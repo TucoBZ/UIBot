@@ -31,43 +31,42 @@ class ViewControllerUITests: XCTestCase, UIBot.Bottable {
     }
 
     func testScrollAndTapAtCell() {
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .scrollUntilFind(labelText: "50")
             .tapLabel(text: "50")
         
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .assertHeaderCell(label: "50")
-            .screenExists()
     }
 
     func testBackButton() {
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .scrollUntilFind(labelText: "30")
             .tapLabel(text: "30")
         
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .assertHeaderCell(label: "30")
             .scrollUntilFind(labelText: "49")
             .tapLabel(text: "49")
         
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .assertHeaderCell(label: "49")
             .scrollUntilFind(labelText: "29")
             .tapLabel(text: "29")
         
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .assertHeaderCell(label: "29")
             .tapBackButton()
         
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .assertHeaderCell(label: "49")
             .tapBackButton()
         
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .assertHeaderCell(label: "30")
             .tapBackButton()
         
-        ViewControllerBot(test: self)
+        _ = ViewControllerBot(test: self)
             .exists(text: "30")
     }
 }

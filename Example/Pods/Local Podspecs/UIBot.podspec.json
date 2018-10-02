@@ -1,6 +1,6 @@
 {
   "name": "UIBot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "A Bot way to create UI Test in Swift.",
   "homepage": "https://github.com/TucoBZ/UIBot",
   "license": {
@@ -12,8 +12,9 @@
   },
   "source": {
     "git": "https://github.com/TucoBZ/UIBot.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
+  "swift_version": "4.0",
   "platforms": {
     "ios": "9.0"
   },
