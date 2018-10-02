@@ -163,7 +163,7 @@ open class Bot {
     
     ///Wait a time in seconds
     public func wait(time: UInt32) -> Self {
-        XCTContext.runActivity(named: "Wait a time: \(time) seconds") { _ in
+        _ = XCTContext.runActivity(named: "Wait a time: \(time) seconds") { _ in
             sleep(time)
         }
         return self
