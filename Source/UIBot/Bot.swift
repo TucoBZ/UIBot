@@ -124,15 +124,13 @@ open class Bot {
     
     ///Wait for a text Exists, including StaticTexts and Labels
     public func wait(text: String) -> Self  {
-        XCTContext.runActivity(named: "Waiting for Text: \(text)")  { _ in
-            XCTContext.runActivity(named: "Waiting for Text: \(text)") { _ in
-                if app.staticTexts[text].waitForExistence(timeout: 30) {
-                    sleep(1)
-                } else if app.buttons[text].waitForExistence(timeout: 30) {
-                    sleep(1)
-                } else {
-                    XCTFail()
-                }
+        XCTContext.runActivity(named: "Waiting for Text: \(text)") { _ in
+            if app.staticTexts[text].waitForExistence(timeout: 30) {
+                sleep(1)
+            } else if app.buttons[text].waitForExistence(timeout: 30) {
+                sleep(1)
+            } else {
+                XCTFail()
             }
         }
         return self
