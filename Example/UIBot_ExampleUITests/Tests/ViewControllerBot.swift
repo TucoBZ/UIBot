@@ -19,13 +19,11 @@ class ViewControllerBot: Bot {
         return app.navigationBars[title]
     }
     
-    func scrollUntilFind(labelText: String) -> ViewControllerBot {
-        scrollTable(at: 0, untilTextExists: "50", direction: .up)
-        return self
+    func scrollUntilFind(labelText: String) -> Self {
+        return scrollTable(at: 0, untilTextExists: "50", direction: .up)
     }
 
-    func assertHeaderCell(label text: String) -> ViewControllerBot {
-        exists(text: "\(header) \(text)")
-        return self
+    func assertHeaderCell(label text: String) -> Self {
+        return exists(text: "\(header) \(text)")
     }
 }
