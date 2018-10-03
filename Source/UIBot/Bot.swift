@@ -84,6 +84,27 @@ open class Bot {
         return self
     }
     
+    ///Verifies that a Image with an ID exists
+    public func assertImage(id: String) -> Self {
+        XCTContext.runActivity(named: "Exists Image with id: \(id)") { _ in
+            XCTAssert(app.images[id].exists)
+        }
+        return self
+    }
+    
+    ///Verifies that a Button with an ID exists or not
+    public func assertButton(id: String, exists: Bool = true) -> Self {
+        XCTContext.runActivity(named: "\(exists ? "Exists" : "Not Exists") Button with id: \(id)") { _ in
+            if exists {
+                app.collectionViews
+                XCTAssertTrue(app.buttons[id].exists)
+            } else {
+                XCTAssertFalse(app.buttons[id].exists)
+            }
+        }
+        return self
+    }
+    
     //MARK: Taps
     
     ///Tap a Button with an ID
@@ -125,9 +146,7 @@ open class Bot {
     ///Wait for a text Exists, including StaticTexts and Labels
     public func wait(text: String) -> Self  {
         XCTContext.runActivity(named: "Waiting for Text: \(text)") { _ in
-            if app.staticTexts[text].waitForExistence(timeout: 30) {
-                sleep(1)
-            } else if app.buttons[text].waitForExistence(timeout: 30) {
+            if app.staticTexts[text].waitForExistence(timeout: testTimeout) || app.buttons[text].waitForExistence(timeout: testTimeout) {
                 sleep(1)
             } else {
                 XCTFail()
@@ -139,7 +158,7 @@ open class Bot {
     ///Waits for a View with an id to exists
     public func waitView(id: String) -> Self {
         XCTContext.runActivity(named: "Waiting for View with Id: \(id)") { _ in
-            if app.otherElements[id].waitForExistence(timeout: 30) {
+            if app.otherElements[id].waitForExistence(timeout: testTimeout) {
                 sleep(1)
             } else {
                 XCTFail()
@@ -170,16 +189,23 @@ open class Bot {
 
     //MARK: Scrolls
     
-    ///Try to scroll until element shows
-    public func scrollTable(at index: Int, untilTextExists text: String, direction: SwipeDirection) -> Self {
-        XCTContext.runActivity(named: "Scrolls TableView at index: \(index) until element exist at direction \(direction.description)") { _ in
+    ///Try to scroll TableView, ScrollView or CollectionView at index, until element shows
+    public func scroll(at index: Int, untilElementExists element: XCUIElement, direction: SwipeDirection) -> Self {
+        XCTContext.runActivity(named: "Scrolls TableView, ScrollView or CollectionView at index: \(index) until element exist at direction \(direction.description)") { _ in
             
             let expecation1 = test.expectation(description: "wait for element to show")
             
-            while !app.staticTexts[text].isVisible {
-                let tableView = app.tables.element(boundBy: index)
+            while !element.isVisible {
+                let tableView: XCUIElement = app.tables.element(boundBy: index)
+                let scrollView: XCUIElement = app.scrollViews.element(boundBy: index)
+                let collectionView: XCUIElement = app.collectionViews.element(boundBy: index)
+                
                 if tableView.exists {
                     direction.swipe(at: tableView)
+                } else if scrollView.exists {
+                    direction.swipe(at: scrollView)
+                } else if collectionView.exists {
+                    direction.swipe(at: collectionView)
                 } else {
                     XCTFail()
                 }
@@ -192,6 +218,12 @@ open class Bot {
             })
         }
         return self
+    }
+
+    
+    ///Try to scroll TableView, ScrollView and CollectionView at index, until Text shows
+    public func scroll(at index: Int, untilTextExists text: String, direction: SwipeDirection) -> Self {
+        return scroll(at: index, untilElementExists: app.staticTexts[text], direction: direction)
     }
     
     //MARK: TextFields
