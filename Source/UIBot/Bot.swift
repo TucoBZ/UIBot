@@ -157,7 +157,7 @@ open class Bot {
     public func backFromSafari() -> Self {
         XCTContext.runActivity(named: "Given safari is in Foreground, tap at back to App") { _ in
             let safari = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
-            safari.wait(for: .runningForeground, timeout: testTimeout)
+            XCTAssert(safari.wait(for: .runningForeground, timeout: testTimeout))
             let normalized = safari.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
             let coordinate = normalized.withOffset(CGVector(dx: 5, dy: 10))
             coordinate.tap()
