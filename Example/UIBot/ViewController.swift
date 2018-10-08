@@ -27,10 +27,20 @@ class ViewController: UIViewController {
     }
 
     func push(viewController: UIViewController, with indexPath: IndexPath) {
-        if let viewController = viewController as? ViewController {
-            viewController.headerText = "Last Selection \(indexPath.row)"
+        switch indexPath.row {
+        case 0:
+            guard let url = URL(string: "https://www.google.com.br") else { return }
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        default:
+            if let viewController = viewController as? ViewController {
+                viewController.headerText = "Last Selection \(indexPath.row)"
+            }
+            navigationController?.pushViewController(viewController, animated: true)
         }
-        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
