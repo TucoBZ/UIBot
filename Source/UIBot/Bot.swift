@@ -18,7 +18,7 @@ open class Bot {
     ///Test Timeout in Seconds
     var testTimeout: TimeInterval
     
-    public init(test: Bottable, timeout: TimeInterval = 40.0) {
+    public init(test: Bottable, timeout: TimeInterval = 30.0) {
         self.app = test.app
         self.test = test.caseTest
         self.testTimeout = timeout
@@ -58,11 +58,16 @@ open class Bot {
         return self
     }
     
-    ///Verifies if a text exists in Screen
-    public func exists(text: String) -> Self  {
+    ///Verifies if a text exists in Screen, including Label and Buttons Label
+    public func assertIsVisible(text: String) -> Self  {
         XCTContext.runActivity(named: "Exists Text: \(text)") { _ in
-            let staticText = app.staticTexts[text]
-            XCTAssert(staticText.isVisible)
+            if app.staticTexts[text].exists {
+                XCTAssert(app.staticTexts[text].isVisible)
+            } else if app.buttons[text].exists {
+                XCTAssert(app.buttons[text].isVisible)
+            } else {
+                XCTFail()
+            }
         }
         return self
     }
@@ -96,7 +101,6 @@ open class Bot {
     public func assertButton(id: String, exists: Bool = true) -> Self {
         XCTContext.runActivity(named: "\(exists ? "Exists" : "Not Exists") Button with id: \(id)") { _ in
             if exists {
-                app.collectionViews
                 XCTAssertTrue(app.buttons[id].exists)
             } else {
                 XCTAssertFalse(app.buttons[id].exists)
@@ -137,6 +141,26 @@ open class Bot {
     public func tapView(id: String) -> Self {
         XCTContext.runActivity(named: "Tap View with Id: \(id)") { _ in
             app.otherElements[id].tap()
+        }
+        return self
+    }
+    
+    //Tap at coordinate
+    public func tapCoordinate(x xCoordinate: Double, y yCoordinate: Double)  -> Self {
+        let normalized = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+        let coordinate = normalized.withOffset(CGVector(dx: xCoordinate, dy: yCoordinate))
+        coordinate.tap()
+        return self
+    }
+    
+    //Given safari is in Foreground, tap at back to App
+    public func backFromSafari() -> Self {
+        XCTContext.runActivity(named: "Given safari is in Foreground, tap at back to App") { _ in
+            let safari = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
+            safari.wait(for: .runningForeground, timeout: testTimeout)
+            let normalized = safari.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+            let coordinate = normalized.withOffset(CGVector(dx: 5, dy: 10))
+            coordinate.tap()
         }
         return self
     }
@@ -242,6 +266,44 @@ open class Bot {
             
             textField?.tap()
             textField?.typeText(text)
+        }
+        return self
+    }
+    
+    //MARK: Cells
+    
+    ///Tap a Cell at index
+    public func tapCell(at index: Int) -> Self {
+        XCTContext.runActivity(named: "Tap a Cell at index: \(index)") { _ in
+            app.cells.element(boundBy: index).tap()
+        }
+        return self
+    }
+    
+    //MARK: Alerts
+    
+    ///Asserts Alert Title
+    public func assertAlert(title: String) -> Self {
+        XCTContext.runActivity(named: "Assert if Alert Title is: \(title)") { _ in
+            XCTAssert(app.alerts.staticTexts[title].exists)
+        }
+        return self
+    }
+    
+    ///Asserts Alert Message
+    public func assertAlert(message: String) -> Self {
+        XCTContext.runActivity(named: "Assert if Alert message is: \(message)") { _ in
+            XCTAssert(app.alerts.staticTexts[message].exists)
+        }
+        return self
+    }
+    
+    ///Asserts Alert Button title and tap it
+    public func tapAlertButton(title: String) -> Self {
+        XCTContext.runActivity(named: "Assert Alert Button Title is: \(title) and tap it") { _ in
+            let button = app.alerts.element(boundBy: 0).buttons[title]
+            XCTAssert(button.exists)
+            button.tap()
         }
         return self
     }
