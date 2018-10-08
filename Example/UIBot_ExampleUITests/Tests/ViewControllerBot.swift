@@ -24,6 +24,6 @@ class ViewControllerBot: Bot {
     }
 
     func assertHeaderCell(label text: String) -> Self {
-        return exists(text: "\(header) \(text)")
+        return assertIsVisible(text: "\(header) \(text)")
     }
 }

@@ -67,7 +67,25 @@ class ViewControllerUITests: XCTestCase, UIBot.Bottable {
             .tapBackButton()
         
         _ = ViewControllerBot(test: self)
-            .exists(text: "30")
+            .assertIsVisible(text: "30")
+    }
+    
+    func testTapAtCellIndex() {
+        _ = ViewControllerBot(test: self)
+            .tapCell(at: 5)
+        
+        _ = ViewControllerBot(test: self)
+            .assertHeaderCell(label: "5")
+    }
+    
+    func testBackFromSafari() {
+        
+        _ = ViewControllerBot(test: self)
+            .tapCell(at: 0)
+            .wait(time: 5)
+            .backFromSafari()
+        
+        _ = ViewControllerBot(test: self)
     }
 }
 
