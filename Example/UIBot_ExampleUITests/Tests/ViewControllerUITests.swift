@@ -79,10 +79,9 @@ class ViewControllerUITests: XCTestCase, UIBot.Bottable {
     }
     
     func testBackFromSafari() {
-        
         _ = ViewControllerBot(test: self)
             .tapCell(at: 0)
-            .wait(time: 5)
+            .wait(time: 2)
             .backFromSafari()
         
         _ = ViewControllerBot(test: self)
