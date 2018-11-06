@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ButtonLabelViewController" customModule="UIBot_Example" customModuleProvider="target">
+            <connections>
+                <outlet property="countLabel" destination="sQU-cI-FzM" id="c4p-Ii-kgX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="QGu-Da-Tdk">
+                    <rect key="frame" x="24" y="44" width="327" height="599"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sQU-cI-FzM">
+                            <rect key="frame" x="0.0" y="0.0" width="327" height="287.5"/>
+                            <accessibility key="accessibilityConfiguration" identifier="count_lbl"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iX3-Aa-0ng">
+                            <rect key="frame" x="0.0" y="311.5" width="327" height="287.5"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXD-Tb-Gde">
+                                    <rect key="frame" x="0.0" y="0.0" width="163.5" height="287.5"/>
+                                    <accessibility key="accessibilityConfiguration" identifier="plus_btn"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                    <state key="normal" title="+"/>
+                                    <connections>
+                                        <action selector="plusAction:" destination="-1" eventType="touchUpInside" id="RGz-Lt-cbI"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAP-4Y-0Rl">
+                                    <rect key="frame" x="163.5" y="0.0" width="163.5" height="287.5"/>
+                                    <accessibility key="accessibilityConfiguration" identifier="minus_btn"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                    <state key="normal" title="-"/>
+                                    <connections>
+                                        <action selector="minusAction:" destination="-1" eventType="touchUpInside" id="Cw9-6q-BS4"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="QGu-Da-Tdk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="VMQ-Vb-AfP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QGu-Da-Tdk" secondAttribute="trailing" constant="24" id="dQW-Yt-Qxx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="QGu-Da-Tdk" secondAttribute="bottom" constant="24" id="luB-RM-nle"/>
+                <constraint firstItem="QGu-Da-Tdk" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="wp7-pM-fru"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+</document>

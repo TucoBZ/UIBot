@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		594C443B21911E9500A9446E /* ButtonLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C443921911E9500A9446E /* ButtonLabelViewController.swift */; };
+		594C443C21911E9500A9446E /* ButtonLabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 594C443A21911E9500A9446E /* ButtonLabelViewController.xib */; };
+		594C443E21911F9800A9446E /* ButtonLabelViewControllerBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C443D21911F9800A9446E /* ButtonLabelViewControllerBot.swift */; };
+		594C44402191223800A9446E /* ButtonLabelViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C443F2191223800A9446E /* ButtonLabelViewControllerUITests.swift */; };
+		594C4448219127D000A9446E /* ViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C4447219127D000A9446E /* ViewControllerType.swift */; };
+		594C44492191296800A9446E /* ViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594C4447219127D000A9446E /* ViewControllerType.swift */; };
 		5B708640FC0AD320DE0A7ECD /* Pods_UIBot_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77787770FC27ABDCA5EDC113 /* Pods_UIBot_ExampleUITests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -32,6 +38,11 @@
 		1288F5561AA64B7BE79C19A8 /* Pods_UIBot_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIBot_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C48DFF8EC1D5118561A5DBF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		3F53099E3A46C80D21E651A1 /* Pods-UIBot_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIBot_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-UIBot_Example/Pods-UIBot_Example.release.xcconfig"; sourceTree = "<group>"; };
+		594C443921911E9500A9446E /* ButtonLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelViewController.swift; sourceTree = "<group>"; };
+		594C443A21911E9500A9446E /* ButtonLabelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonLabelViewController.xib; sourceTree = "<group>"; };
+		594C443D21911F9800A9446E /* ButtonLabelViewControllerBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelViewControllerBot.swift; sourceTree = "<group>"; };
+		594C443F2191223800A9446E /* ButtonLabelViewControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabelViewControllerUITests.swift; sourceTree = "<group>"; };
+		594C4447219127D000A9446E /* ViewControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerType.swift; sourceTree = "<group>"; };
 		607A9FA5C36E720B71B1E7AF /* Pods-UIBot_ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIBot_ExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UIBot_ExampleUITests/Pods-UIBot_ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* UIBot_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIBot_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +83,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		594C44412191272F00A9446E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD71AFB9204008FA782 /* ViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		594C44422191273900A9446E /* ButtonLabel */ = {
+			isa = PBXGroup;
+			children = (
+				594C443921911E9500A9446E /* ButtonLabelViewController.swift */,
+				594C443A21911E9500A9446E /* ButtonLabelViewController.xib */,
+			);
+			name = ButtonLabel;
+			sourceTree = "<group>";
+		};
+		594C44432191274F00A9446E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				607FACD91AFB9204008FA782 /* Main.storyboard */,
+				594C44412191272F00A9446E /* ViewController */,
+				594C44422191273900A9446E /* ButtonLabel */,
+				594C4447219127D000A9446E /* ViewControllerType.swift */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		594C44442191276700A9446E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				607FACD31AFB9204008FA782 /* Supporting Files */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -96,12 +146,8 @@
 		607FACD21AFB9204008FA782 /* Example for UIBot */ = {
 			isa = PBXGroup;
 			children = (
-				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				607FACD91AFB9204008FA782 /* Main.storyboard */,
-				607FACDC1AFB9204008FA782 /* Images.xcassets */,
-				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
-				607FACD31AFB9204008FA782 /* Supporting Files */,
+				594C44432191274F00A9446E /* Source */,
+				594C44442191276700A9446E /* Resource */,
 			);
 			name = "Example for UIBot";
 			path = UIBot;
@@ -129,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				65FE999B215BE83700E427FB /* ViewControllerBot.swift */,
+				594C443D21911F9800A9446E /* ButtonLabelViewControllerBot.swift */,
 			);
 			name = Bots;
 			path = Tests;
@@ -138,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				65FE9984215BAF3500E427FB /* ViewControllerUITests.swift */,
+				594C443F2191223800A9446E /* ButtonLabelViewControllerUITests.swift */,
 			);
 			name = UITests;
 			path = Tests;
@@ -261,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				594C443C21911E9500A9446E /* ButtonLabelViewController.xib in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
@@ -337,8 +386,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594C4448219127D000A9446E /* ViewControllerType.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				594C443B21911E9500A9446E /* ButtonLabelViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +397,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				594C443E21911F9800A9446E /* ButtonLabelViewControllerBot.swift in Sources */,
+				594C44492191296800A9446E /* ViewControllerType.swift in Sources */,
+				594C44402191223800A9446E /* ButtonLabelViewControllerUITests.swift in Sources */,
 				65FE999A215BE7F400E427FB /* ViewControllerUITests.swift in Sources */,
 				65FE999C215BE83700E427FB /* ViewControllerBot.swift in Sources */,
 			);
