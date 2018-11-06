@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'UIBot'
-  spec.version          = '0.1.3'
+  spec.version          = '0.1.5'
   spec.summary          = 'A Bot way to create UI Test in Swift.'
   spec.homepage         = 'https://github.com/TucoBZ/UIBot'
   spec.license          = { :type => 'MIT', :file => 'LICENSE' }

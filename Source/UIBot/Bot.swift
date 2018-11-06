@@ -37,6 +37,48 @@ open class Bot {
     
     //MARK: Asserts
     
+    ///Assert a StaticText exists
+    func assert(text: String) -> Self {
+        XCTContext.runActivity(named: "Check if Exists a label: \(text)") { _ in
+            let predicate = NSPredicate(format: "label LIKE %@", text)
+            let label = app.staticTexts.element(matching: predicate)
+            XCTAssert(label.exists)
+            
+        }
+        return self
+    }
+    
+    ///Assert a StaticText contains a substring
+    func assertContains(text: String) -> Self {
+        XCTContext.runActivity(named: "Check if Exists a label that contains substring: \(text)") { _ in
+            let predicate = NSPredicate(format: "label CONTAINS %@", text)
+            let label = app.staticTexts.element(matching: predicate)
+            XCTAssert(label.exists)
+        }
+        return self
+    }
+    
+    ///Assert a StaticText exists
+    func assertButton(text: String) -> Self {
+        XCTContext.runActivity(named: "Check if Exists a label: \(text)") { _ in
+            let predicate = NSPredicate(format: "button LIKE %@", text)
+            let label = app.staticTexts.element(matching: predicate)
+            XCTAssert(label.exists)
+            
+        }
+        return self
+    }
+    
+    ///Assert a StaticText contains a substring
+    func assertContains(text: String) -> Self {
+        XCTContext.runActivity(named: "Check if Exists a label that contains substring: \(text)") { _ in
+            let predicate = NSPredicate(format: "label CONTAINS %@", text)
+            let label = app.staticTexts.element(matching: predicate)
+            XCTAssert(label.exists)
+        }
+        return self
+    }
+    
     ///Verifies if this Screen is presented
     public func screenExists() -> Self {
         XCTContext.runActivity(named: "Check if this Screen Exists") { _ in
