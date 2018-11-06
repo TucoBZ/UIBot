@@ -245,6 +245,7 @@ open class Bot {
     public func wait(time: UInt32) -> Self {
         XCTContext.runActivity(named: "Wait a time: \(time) seconds") { _ in
             sleep(time)
+            XCTAssert(true)
         }
         return self
     }
