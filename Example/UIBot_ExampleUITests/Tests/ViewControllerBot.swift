@@ -20,10 +20,10 @@ class ViewControllerBot: Bot {
     }
     
     func scrollUntilFind(labelText: String) -> Self {
-        return scroll(at: 0, untilTextExists: "50", direction: .up)
+        return scroll(at: 0, untilTextExists: labelText, direction: .up)
     }
 
     func assertHeaderCell(label text: String) -> Self {
-        return exists(text: "\(header) \(text)")
+        return assertIsVisible(text: "\(header) \(text)")
     }
 }
