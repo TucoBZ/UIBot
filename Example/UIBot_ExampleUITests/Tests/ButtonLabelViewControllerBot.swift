@@ -17,7 +17,7 @@ class ButtonLabelViewControllerBot: Bot {
     let countLabel: String = "count_lbl"
     
     override func trait() -> XCUIElement? {
-        return app.staticText[countLabel]
+        return app.staticTexts[countLabel]
     }
     
     func tapPlusBtn() -> Self {
@@ -29,14 +29,14 @@ class ButtonLabelViewControllerBot: Bot {
     }
     
     func assertCount(label text: String) -> Self {
-        return assert(text: "\(text)")
+        return assert(label: "\(text)")
     }
     
     func assertPlusBtnLabel() -> Self {
-        return assert(text: "+")
+        return assert(label: "+")
     }
     
     func assertMinusBtnLabel() -> Self {
-        return assert(text: "-")
+        return assertButton(id: minusBtn, with: "-")
     }
 }

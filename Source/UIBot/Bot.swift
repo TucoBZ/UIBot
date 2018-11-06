@@ -37,56 +37,47 @@ open class Bot {
     
     //MARK: Asserts
     
-    ///Assert a StaticText exists
-    func assert(text: String) -> Self {
+    ///Assert a Label with text exists
+    open func assert(label text: String) -> Self {
         XCTContext.runActivity(named: "Check if Exists a label: \(text)") { _ in
             let predicate = NSPredicate(format: "label LIKE %@", text)
-            let label = app.staticTexts.element(matching: predicate)
-            XCTAssert(label.exists)
-            
+            let labelText = app.staticTexts.element(matching: predicate)
+            let buttonLabelText = app.buttons.element(matching: predicate)
+            XCTAssert(labelText.exists || buttonLabelText.exists, "Not Exist label: '\(text)'")
         }
         return self
     }
     
-    ///Assert a StaticText contains a substring
-    func assertContains(text: String) -> Self {
-        XCTContext.runActivity(named: "Check if Exists a label that contains substring: \(text)") { _ in
-            let predicate = NSPredicate(format: "label CONTAINS %@", text)
-            let label = app.staticTexts.element(matching: predicate)
-            XCTAssert(label.exists)
-        }
-        return self
-    }
-    
-    ///Assert a StaticText exists
-    func assertButton(text: String) -> Self {
+    ///Assert a Label with text not exists
+    open func assertNotExits(label text: String) -> Self {
         XCTContext.runActivity(named: "Check if Exists a label: \(text)") { _ in
-            let predicate = NSPredicate(format: "button LIKE %@", text)
-            let label = app.staticTexts.element(matching: predicate)
-            XCTAssert(label.exists)
-            
+            let predicate = NSPredicate(format: "label LIKE %@", text)
+            let labelText = app.staticTexts.element(matching: predicate)
+            let buttonLabelText = app.buttons.element(matching: predicate)
+            XCTAssertFalse(labelText.exists || buttonLabelText.exists, "Exist label: '\(text)'")
         }
         return self
     }
     
-    ///Assert a StaticText contains a substring
-    func assertContains(text: String) -> Self {
+    ///Assert a Label that contains a substring
+    open func assertContains(text: String) -> Self {
         XCTContext.runActivity(named: "Check if Exists a label that contains substring: \(text)") { _ in
             let predicate = NSPredicate(format: "label CONTAINS %@", text)
-            let label = app.staticTexts.element(matching: predicate)
-            XCTAssert(label.exists)
+            let labelText = app.staticTexts.element(matching: predicate)
+            let buttonLabelText = app.buttons.element(matching: predicate)
+            XCTAssert(labelText.exists || buttonLabelText.exists, "Not Exist substring: '\(text)'")
         }
         return self
     }
-    
+   
     ///Verifies if this Screen is presented
     public func screenExists() -> Self {
         XCTContext.runActivity(named: "Check if this Screen Exists") { _ in
             guard let trait = trait() else { XCTFail(); return }
             self.test.wait(element: trait, by: testTimeout) { (error) in
-                XCTAssertNil(error)
+                XCTAssertNil(error, "Timeout!")
             }
-            XCTAssert(trait.exists)
+            XCTAssert(trait.exists, "Not Exist trait: '\(trait)'")
         }
         return self
     }
@@ -95,7 +86,7 @@ open class Bot {
     ///Verifies that a Button with an ID has a specific Label
     public func assertButton(id: String, with label: String) -> Self {
         XCTContext.runActivity(named: "Exists Button with id: \(id) and label: \(label)") { _ in
-            XCTAssert(app.buttons[id].label == label)
+            XCTAssert(app.buttons[id].label == label, "Not Exist Button with id: '\(id)' and '\(label)'")
         }
         return self
     }
@@ -103,13 +94,10 @@ open class Bot {
     ///Verifies if a text exists in Screen, including Label and Buttons Label
     public func assertIsVisible(text: String) -> Self  {
         XCTContext.runActivity(named: "Exists Text: \(text)") { _ in
-            if app.staticTexts[text].exists {
-                XCTAssert(app.staticTexts[text].isVisible)
-            } else if app.buttons[text].exists {
-                XCTAssert(app.buttons[text].isVisible)
-            } else {
-                XCTFail()
-            }
+            let predicate = NSPredicate(format: "label LIKE %@", text)
+            let labelText = app.staticTexts.element(matching: predicate)
+            let buttonLabelText = app.buttons.element(matching: predicate)
+            XCTAssert(labelText.isVisible || buttonLabelText.isVisible, "Not Visible Label: '\(text)'")
         }
         return self
     }
@@ -118,7 +106,7 @@ open class Bot {
     public func assertLabel(id: String, with text: String) -> Self  {
         XCTContext.runActivity(named: "Exists Label with id: \(id) and text: \(text) ") { _ in
             let staticText = app.staticTexts[id]
-            XCTAssert(staticText.label == text)
+            XCTAssert(staticText.label == text, "Not Exist Label with id: '\(id)' and '\(text)'")
         }
         return self
     }
@@ -126,7 +114,7 @@ open class Bot {
     ///Verifies if a text exists in NavigationBar
     public func assertNavigationBar(title: String) -> Self {
         XCTContext.runActivity(named: "Exists Text: \(title) in the NavigationBar") { _ in
-            XCTAssert(app.navigationBars[title].exists)
+            XCTAssert(app.navigationBars[title].exists, "Not exist a NAvigationBar with Title: '\(title)'")
         }
         return self
     }
@@ -134,7 +122,7 @@ open class Bot {
     ///Verifies that a Image with an ID exists
     public func assertImage(id: String) -> Self {
         XCTContext.runActivity(named: "Exists Image with id: \(id)") { _ in
-            XCTAssert(app.images[id].exists)
+            XCTAssert(app.images[id].exists, "Not exist a ImageView with id: '\(id)'")
         }
         return self
     }
@@ -143,9 +131,9 @@ open class Bot {
     public func assertButton(id: String, exists: Bool = true) -> Self {
         XCTContext.runActivity(named: "\(exists ? "Exists" : "Not Exists") Button with id: \(id)") { _ in
             if exists {
-                XCTAssertTrue(app.buttons[id].exists)
+                XCTAssertTrue(app.buttons[id].exists, "Not exist a Button with id: '\(id)'")
             } else {
-                XCTAssertFalse(app.buttons[id].exists)
+                XCTAssertFalse(app.buttons[id].exists, "Exist a Button with id: '\(id)'")
             }
         }
         return self
@@ -162,10 +150,19 @@ open class Bot {
     }
     
     
-    ///Tap a Button with an ID
+    ///Tap a Visible Label with a Text
     public func tapLabel(text: String) -> Self  {
         XCTContext.runActivity(named: "Tap at Label with text: \(text)") { _ in
-            app.staticTexts[text].tap()
+            let predicate = NSPredicate(format: "label LIKE %@", text)
+            let labelText = app.staticTexts.element(matching: predicate)
+            let buttonLabelText = app.buttons.element(matching: predicate)
+            if labelText.exists {
+                labelText.tap()
+            } else if buttonLabelText.exists {
+                buttonLabelText.tap()
+            } else {
+                XCTFail("No label '\(text)' found to Tap")
+            }
         }
         return self
     }
@@ -209,13 +206,13 @@ open class Bot {
  
     //MARK: Waitings
     
-    ///Wait for a text Exists, including StaticTexts and Labels
+    ///Wait for a label Exists, including StaticTexts and Button Labels
     public func wait(text: String) -> Self  {
         XCTContext.runActivity(named: "Waiting for Text: \(text)") { _ in
             if app.staticTexts[text].waitForExistence(timeout: testTimeout) || app.buttons[text].waitForExistence(timeout: testTimeout) {
                 sleep(1)
             } else {
-                XCTFail()
+                XCTFail("Test Timeout, text '\(text)' did not appear")
             }
         }
         return self
@@ -227,7 +224,7 @@ open class Bot {
             if app.otherElements[id].waitForExistence(timeout: testTimeout) {
                 sleep(1)
             } else {
-                XCTFail()
+                XCTFail("Test Timeout, view with id '\(id)' did not appear")
             }
         }
         return self
@@ -237,7 +234,7 @@ open class Bot {
     public func waitToNotExist(element: XCUIElement) -> Self {
         XCTContext.runActivity(named: "Wait Until Element: \(element) not Exist") { _ in
             self.test.waitToNotExist(element: element, by: testTimeout) { (error) in
-                XCTAssertNil(error)
+                XCTAssertNil(error, "Test Timeout, element '\(element)' exists")
                 sleep(1)
             }
         }
@@ -248,7 +245,6 @@ open class Bot {
     public func wait(time: UInt32) -> Self {
         XCTContext.runActivity(named: "Wait a time: \(time) seconds") { _ in
             sleep(time)
-            XCTAssert(true)
         }
         return self
     }
@@ -273,14 +269,14 @@ open class Bot {
                 } else if collectionView.exists {
                     direction.swipe(at: collectionView)
                 } else {
-                    XCTFail()
+                    XCTFail("Not exists a scrollView to scroll at index: \(index)")
                 }
             }
             
             expecation1.fulfill()
             
             test.waitForExpectations(timeout: testTimeout, handler: { (error) in
-                XCTAssertNil(error)
+                XCTAssertNil(error, "test Timeout, element '\(element)' did not appear")
             })
         }
         return self
@@ -303,7 +299,7 @@ open class Bot {
             } else if app.secureTextFields[id].exists {
                 textField = app.secureTextFields[id]
             } else {
-                XCTFail()
+                XCTFail("Do not exists a textField with id: \(id)")
             }
             
             textField?.tap()
@@ -327,7 +323,7 @@ open class Bot {
     ///Asserts Alert Title
     public func assertAlert(title: String) -> Self {
         XCTContext.runActivity(named: "Assert if Alert Title is: \(title)") { _ in
-            XCTAssert(app.alerts.staticTexts[title].exists)
+            XCTAssert(app.alerts.staticTexts[title].exists, "Alert title '\(title)', do not exists")
         }
         return self
     }
@@ -335,7 +331,7 @@ open class Bot {
     ///Asserts Alert Message
     public func assertAlert(message: String) -> Self {
         XCTContext.runActivity(named: "Assert if Alert message is: \(message)") { _ in
-            XCTAssert(app.alerts.staticTexts[message].exists)
+            XCTAssert(app.alerts.staticTexts[message].exists, "Alert message '\(message)', do not exists")
         }
         return self
     }
@@ -344,7 +340,7 @@ open class Bot {
     public func tapAlertButton(title: String) -> Self {
         XCTContext.runActivity(named: "Assert Alert Button Title is: \(title) and tap it") { _ in
             let button = app.alerts.element(boundBy: 0).buttons[title]
-            XCTAssert(button.exists)
+            XCTAssert(button.exists, "Alert button with title '\(title)', do not exists")
             button.tap()
         }
         return self

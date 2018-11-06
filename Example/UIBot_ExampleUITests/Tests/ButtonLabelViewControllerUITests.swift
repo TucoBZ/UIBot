@@ -12,27 +12,63 @@ import UIBot
 class ButtonLabelViewControllerUITests: XCTestCase, UIBot.Bottable {
     
     var caseTest: XCTestCase { return self }
-    let app: XCUIApplication = XCUIApplication() {
+    let app: XCUIApplication = XCUIApplication() 
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        app.    
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app.launchArguments += ["UI_TEST"]
+        app.launchEnvironment["startViewController"] = ViewControllerType.buttonLabel.rawValue
+        app.launch()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testTapPlus() {
+        _ = ButtonLabelViewControllerBot(test: self)
+            .tapPlusBtn()
+            .tapPlusBtn()
+            .tapPlusBtn()
+            .assertCount(label: "3")
     }
 
+    func testTapMinus() {
+        _ = ButtonLabelViewControllerBot(test: self)
+            .tapMinusBtn()
+            .tapMinusBtn()
+            .tapMinusBtn()
+            .assertCount(label: "-3")
+    }
+    
+    func testTapPlusAndMinus() {
+        _ = ButtonLabelViewControllerBot(test: self)
+            .tapPlusBtn()
+            .tapPlusBtn()
+            .tapPlusBtn()
+            .assertCount(label: "3")
+            .assertNotExits(label: "2")
+            .tapMinusBtn()
+            .tapMinusBtn()
+            .tapMinusBtn()
+            .assertCount(label: "0")
+            .tapPlusBtn()
+            .assertCount(label: "1")
+            .tapMinusBtn()
+            .assertCount(label: "0")
+            .tapPlusBtn()
+            .tapPlusBtn()
+            .assertCount(label: "2")
+            .tapMinusBtn()
+            .tapMinusBtn()
+            .assertCount(label: "0")
+    }
+    
+    func testAssertLabels() {
+        _ = ButtonLabelViewControllerBot(test: self)
+            .assertPlusBtnLabel()
+            .assertMinusBtnLabel()
+            .assertCount(label: "0")
+    }
 }
