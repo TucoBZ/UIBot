@@ -14,10 +14,11 @@
     "git": "https://github.com/TucoBZ/UIBot.git",
     "tag": "0.1.5"
   },
-  "swift_version": "4.0",
+  "swift_versions": "4.0",
   "platforms": {
     "ios": "9.0"
   },
   "source_files": "Source/UIBot/*.swift",
-  "frameworks": "XCTest"
+  "frameworks": "XCTest",
+  "swift_version": "4.0"
 }
