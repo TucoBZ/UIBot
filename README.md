@@ -17,8 +17,10 @@ UIBot is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'UIBot'
+pod 'UIBot', '~> 0.2.0'
 ```
+
+Use version 0.2.0 to use Swift 5 or version 0.1.5 to Swift 4.0
 
 ## Author
 
