@@ -85,7 +85,7 @@ Some actions availables in a `Bot`:
 - Custom waiting for elements
 - and more...
 
-You can create your on interaction in your `Bot`, it is a good pratice, after every assert or interaction function you return `Self` as `@discardableResult` to create the flow as presented before.
+You can create your own interaction in a `Bot`, it is a good pratice after every assert or interaction function you return `Self` as `@discardableResult` to create the flow as presented before.
 
 
 ## Author
