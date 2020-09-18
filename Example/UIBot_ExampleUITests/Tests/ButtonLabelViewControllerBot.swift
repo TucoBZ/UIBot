@@ -19,23 +19,28 @@ class ButtonLabelViewControllerBot: Bot {
     override func trait() -> XCUIElement? {
         return app.staticTexts[countLabel]
     }
-    
+
+    @discardableResult
     func tapPlusBtn() -> Self {
         return tapButton(id: plusBtn)
     }
-    
+
+    @discardableResult
     func tapMinusBtn() -> Self {
         return tapButton(id: minusBtn)
     }
-    
+
+    @discardableResult
     func assertCount(label text: String) -> Self {
         return assert(label: "\(text)")
     }
-    
+
+    @discardableResult
     func assertPlusBtnLabel() -> Self {
         return assert(label: "+")
     }
-    
+
+    @discardableResult
     func assertMinusBtnLabel() -> Self {
         return assertButton(id: minusBtn, with: "-")
     }

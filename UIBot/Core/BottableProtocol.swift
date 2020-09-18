@@ -12,7 +12,7 @@ public protocol Bottable {
     var caseTest: XCTestCase {get}
 }
 
-extension Bottable where  Self: XCTestCase {
+extension Bottable where Self: XCTestCase {
     var caseTest: XCTestCase { return self }
     var app: XCUIApplication { return XCUIApplication() }
 }

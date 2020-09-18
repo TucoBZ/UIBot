@@ -1,6 +1,6 @@
 {
   "name": "UIBot",
-  "version": "0.1.5",
+  "version": "0.3.0",
   "summary": "A Bot way to create UI Test in Swift.",
   "homepage": "https://github.com/TucoBZ/UIBot",
   "license": {
@@ -12,13 +12,20 @@
   },
   "source": {
     "git": "https://github.com/TucoBZ/UIBot.git",
-    "tag": "0.1.5"
+    "tag": "0.3.0"
   },
-  "swift_versions": "4.0",
+  "swift_versions": "5.0",
   "platforms": {
     "ios": "9.0"
   },
   "source_files": "Source/UIBot/*.swift",
   "frameworks": "XCTest",
-  "swift_version": "4.0"
+  "default_subspecs": "Core",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "UIBot/Core/**/*.swift"
+    }
+  ],
+  "swift_version": "5.0"
 }

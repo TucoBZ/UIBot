@@ -18,11 +18,13 @@ class ViewControllerBot: Bot {
     override func trait() -> XCUIElement? {
         return app.navigationBars[title]
     }
-    
+
+    @discardableResult
     func scrollUntilFind(labelText: String) -> Self {
         return scroll(at: 0, untilTextExists: labelText, direction: .up)
     }
 
+    @discardableResult
     func assertHeaderCell(label text: String) -> Self {
         return assertIsVisible(text: "\(header) \(text)")
     }

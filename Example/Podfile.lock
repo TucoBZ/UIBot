@@ -1,5 +1,7 @@
 PODS:
-  - UIBot (0.1.5)
+  - UIBot (0.3.0):
+    - UIBot/Core (= 0.3.0)
+  - UIBot/Core (0.3.0)
 
 DEPENDENCIES:
   - UIBot (from `../`)
@@ -9,8 +11,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  UIBot: c4037c467bd0895d4462ac015fd679581c2dd479
+  UIBot: 96916187c7b76d507e8ed6faa878d24f470192dc
 
 PODFILE CHECKSUM: 5784d3ac43781affe9a88f8e362a0b454f559bf0
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.9.3

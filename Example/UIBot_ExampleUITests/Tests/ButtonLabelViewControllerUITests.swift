@@ -10,9 +10,9 @@ import XCTest
 import UIBot
 
 class ButtonLabelViewControllerUITests: XCTestCase, UIBot.Bottable {
-    
+
     var caseTest: XCTestCase { return self }
-    let app: XCUIApplication = XCUIApplication() 
+    let app: XCUIApplication = XCUIApplication()
 
     override func setUp() {
         continueAfterFailure = false
@@ -25,9 +25,9 @@ class ButtonLabelViewControllerUITests: XCTestCase, UIBot.Bottable {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
+
     func testTapPlus() {
-        _ = ButtonLabelViewControllerBot(test: self)
+        ButtonLabelViewControllerBot(test: self)
             .tapPlusBtn()
             .tapPlusBtn()
             .tapPlusBtn()
@@ -35,15 +35,15 @@ class ButtonLabelViewControllerUITests: XCTestCase, UIBot.Bottable {
     }
 
     func testTapMinus() {
-        _ = ButtonLabelViewControllerBot(test: self)
+        ButtonLabelViewControllerBot(test: self)
             .tapMinusBtn()
             .tapMinusBtn()
             .tapMinusBtn()
             .assertCount(label: "-3")
     }
-    
+
     func testTapPlusAndMinus() {
-        _ = ButtonLabelViewControllerBot(test: self)
+        ButtonLabelViewControllerBot(test: self)
             .tapPlusBtn()
             .tapPlusBtn()
             .tapPlusBtn()
@@ -64,11 +64,12 @@ class ButtonLabelViewControllerUITests: XCTestCase, UIBot.Bottable {
             .tapMinusBtn()
             .assertCount(label: "0")
     }
-    
+
     func testAssertLabels() {
-        _ = ButtonLabelViewControllerBot(test: self)
+        ButtonLabelViewControllerBot(test: self)
             .assertPlusBtnLabel()
             .assertMinusBtnLabel()
             .assertCount(label: "0")
     }
 }
+
